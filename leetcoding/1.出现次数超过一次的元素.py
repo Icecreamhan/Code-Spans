@@ -26,7 +26,7 @@
 def filterduplicate(nums):
     res = []
     for num in nums:
-        index = abs(num)-1  # 找到对应的索引
+        index = abs(num)-1  # 找到对应的索引，为什么不直接用nums[num]呢？因为num可能是负数，但是他们的绝对值又是一样的，因此去绝对值就可以解决这个问题。
         if nums[index] < 0:
             res.append(abs(num))
         else:
