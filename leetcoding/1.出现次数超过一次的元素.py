@@ -6,6 +6,9 @@
 输出: [2,3]
 解释: 数组中 2 和 3 出现了两次。
 """
+
+# 链接：442 数组中重复的数据
+# https://leetcode.cn/problems/find-all-duplicates-in-an-array/description/
 # 思路
 """
 数组长度 n
