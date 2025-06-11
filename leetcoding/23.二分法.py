@@ -83,4 +83,42 @@ def search(nums,target):
     return -1
 
 
+# 附上之前做的2024.8.12
+# 左闭右闭型
+# @lc code=start
+from typing import List
+
+
+class Solution:
+    def search1(self, nums: List[int], target: int) -> int:
+        # 定义target 在左闭右闭 的区间里。[left,right]
+        left = 0
+        right = len(nums) - 1
+        # 因为左闭右闭，所有 left = right也是有效的。---当查询是有效时
+        while left <= right:
+            middle = left + (right - left) // 2  # 取有序且不重复区间的中间位置
+            if nums[middle] > target:  # 如果目标值在区间的左边
+                right = middle - 1  # 改动右边指针，由于左闭右闭，所以为中间索引-1的位置
+            elif nums[middle] < target:  # 如果目标值在区间的右边
+                left = middle + 1  # 改动左边指针，由于左闭右闭，所以为中间索引+1 的位置
+            else:  # 如果目标值就在中间位置
+                return middle  # 返回目标索引
+        return -1
+
+    # 定义一个 左闭右开  的二分法查找函数
+    def search(self, nums: List[int], target: int) -> int:
+        left = 0
+        right = len(nums)
+        # 当左边索引小于右边索引时，检索是有效的.[left,right)
+        while left < right:
+            middle = left + (right - left) // 2  # 中间取值依旧不变
+
+            if nums[middle] > target:  # 在左区间内，[left,middle)
+                right = middle
+            elif nums[middle] < target:  # 在右区间内，[middle+1,right)
+                left = middle + 1
+            else:
+                return middle
+        return -1
+
 
