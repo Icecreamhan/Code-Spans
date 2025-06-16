@@ -83,13 +83,13 @@ def minSubArrayLen(target, nums):
 
     return result if result != float('inf') else 0
 
-    # -------------------暴力求解，超时报错---------------
+    # # -------------------暴力求解，超时报错---------------
     # if not nums:
     #     return 0
-
+    #
     # n = len(nums)
     # minlength = float('inf') # minlength = n+1
-
+    #
     # for left in range(n):
     #     cur_sum = 0
     #     for right in range(left,n):
@@ -97,7 +97,7 @@ def minSubArrayLen(target, nums):
     #         if cur_sum >= target:
     #             minlength = min(minlength,right-left+1)
     #             break
-
+    #
     # return minlength if minlength != float('inf') else 0
 
 
