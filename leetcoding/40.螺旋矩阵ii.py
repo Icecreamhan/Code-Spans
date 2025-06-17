@@ -83,46 +83,83 @@ print(nums)
 
 def generateMatrix(n):
     # 初始化一个n*n的二维矩阵
-    result = [[0]*n for _ in range(n)]
+    result = [[0] * n for _ in range(n)]
 
     # 沿着边对这个矩阵进行填充
-#     首先需要一个表示第几圈（与最外边的偏移量）的标记，这个标记还可以帮助我们找到边的起始和终止位置
-    offset = 1
-    # 需要一个每圈开始的位置指针，帮助我们定位到每次沿边走的开始坐标
-    startx = 0
-    starty = 0
+    # 需要一个每圈开始的位置指针，帮助我们定位到每次沿边走的开始坐标，我们把y沿着螺旋矩阵的横向，x沿着螺旋矩阵的纵向操作，这样x,y 刚好对应着位置和方向
+    startx, starty = 0, 0
     # 需要一个移动步数的计数器，给每个坐标点进行赋值
     count = 1
-    loop = 0 # 已经转的圈数
+    # 定义一个 应该转的圈数
+    loop = n // 2
 
-    # 我们找到循环的圈数，n//2
-    while(loop <= n//2):
-        # 顶部边
-        for j in range(startx,n-offset):
+    # 首先需要一个表示第几圈（与最外边的偏移量）的标记，这个标记还可以帮助我们找到边的起始和终止位置
+    # 我们找到循环的圈数，n//2,loop为已遍历的圈数
+    for offset in range(1, loop + 1):
+        # 顶部横向边 向右走,(用j跑横向边)
+        for j in range(starty, n - offset):
             result[startx][j] = count
             count += 1
-        # 右侧边
-        for i in range(starty,n-offset):
-            result[n-offset][i] = count
+        # 左边竖向边，向下走,(用i跑竖边)
+        for i in range(startx, n - offset):
+            result[i][n - offset] = count
             count += 1
-        # 底部边
-        for j in range(n-offset,startx,-1):
-            result[n-offset][j] = count
+        # 底部横向边，向左走，(用j跑横向边)
+        for j in range(n - offset, starty, -1):
+            result[n - offset][j] = count
             count += 1
-        # 左侧边
-        for i in range(n-offset,starty,-1):
-            result[startx][i] = count
+        # 右边竖向边，向上走，(用i跑竖边)
+        for i in range(n - offset, startx, -1):
+            result[i][starty] = count
             count += 1
         startx += 1
         starty += 1
-        offset += 1
-        loop += 1
-
 
     # 最后，如果为奇数，把最后位置的补齐
-    if (n%2) != 0:
-        result[][] = n*n
+    if (n % 2) != 0:
+        result[loop][loop] = n * n
     return result
+
+
+# 方法二：定义4个边界
+    # if n <= 0:
+    #     return []
+    #
+    #     # 初始化 n x n 矩阵
+    # matrix = [[0] * n for _ in range(n)]
+    #
+    # # 初始化边界和起始值
+    # top, bottom, left, right = 0, n - 1, 0, n - 1
+    # num = 1
+    #
+    # while top <= bottom and left <= right:
+    #     # 从左到右填充上边界
+    #     for i in range(left, right + 1):
+    #         matrix[top][i] = num
+    #         num += 1
+    #     top += 1
+    #
+    #     # 从上到下填充右边界
+    #     for i in range(top, bottom + 1):
+    #         matrix[i][right] = num
+    #         num += 1
+    #     right -= 1
+    #
+    #     # 从右到左填充下边界
+    #
+    #     for i in range(right, left - 1, -1):
+    #         matrix[bottom][i] = num
+    #         num += 1
+    #     bottom -= 1
+    #
+    #     # 从下到上填充左边界
+    #
+    #     for i in range(bottom, top - 1, -1):
+    #         matrix[i][left] = num
+    #         num += 1
+    #     left += 1
+    #
+    # return matrix
 
 
 
