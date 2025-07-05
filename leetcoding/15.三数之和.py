@@ -105,78 +105,78 @@ print(sorted_items)  # 输出：[('b', 1), ('c', 2), ('a', 3)]
 """
 
 
-# def threeSum(nums):
-#     result = []
-#     # 方法1：双指针
-#     # 1. 先进行排序
-#     nums.sort()
-#     n = len(nums)
-#
-#     # 如果排序后的第一个元素已经 > 0，那直接返回空
-#     if nums[0] > 0:
-#         return result
-#
-#     # 2. 用一个for循环，i从下标0的地方开始，同时定一个下标left在i+1位置上，下标right在数组结尾的位置上。
-#     # a=nums[i]，b = nums[left]， c= nums[right]
-#     # 逐个遍历nums[i]
-#     for i in range(n):
-#         # 先对a去重,
-#         if i-1 >= 0 and nums[i] == nums[i-1]:
-#             continue
-#         # 寻找b 和c
-#         left = i+1
-#         right = n-1
-#         while left < right:
-#             sumnums = nums[i] + nums[left] + nums[right]
-#             if sumnums > 0:
-#                 right -= 1
-#             elif sumnums < 0:
-#                 left += 1
-#             else:
-#                 result.append([nums[i], nums[left], nums[right]]) # 返回的是元素而不是索引下标值
-#                 # 对b 和 c 去重。(只有我们先找到 a+b+c=0的时候，才考虑去重)
-#                 while right > left and nums[left] == nums[left+1]: # 确保左指针一直在右指针左边
-#                     left += 1
-#                 while right > left and nums[right] == nums[right-1]: # 确保右指针一直在左指针右边
-#                     right -= 1
-#                 # 继续移动，找另一组b,c，因为已经排序了，所以不会遇到 -5,2,3与-5,3,2的情况
-#                 left += 1
-#                 right -= 1
-#
-#     return result
+def threeSum(nums):
+    result = []
+    # 方法1：双指针
+    # 1. 先进行排序
+    nums.sort()
+    n = len(nums)
+
+    # 如果排序后的第一个元素已经 > 0，那直接返回空
+    if nums[0] > 0:
+        return result
+
+    # 2. 用一个for循环，i从下标0的地方开始，同时定一个下标left在i+1位置上，下标right在数组结尾的位置上。
+    # a=nums[i]，b = nums[left]， c= nums[right]
+    # 逐个遍历nums[i]
+    for i in range(n):
+        # 先对a去重,
+        if i-1 >= 0 and nums[i] == nums[i-1]:
+            continue
+        # 寻找b 和c
+        left = i+1
+        right = n-1
+        while left < right:
+            sumnums = nums[i] + nums[left] + nums[right]
+            if sumnums > 0:
+                right -= 1
+            elif sumnums < 0:
+                left += 1
+            else:
+                result.append([nums[i], nums[left], nums[right]]) # 返回的是元素而不是索引下标值
+                # 对b 和 c 去重。(只有我们先找到 a+b+c=0的时候，才考虑去重)
+                while right > left and nums[left] == nums[left+1]: # 确保左指针一直在右指针左边
+                    left += 1
+                while right > left and nums[right] == nums[right-1]: # 确保右指针一直在左指针右边
+                    right -= 1
+                # 继续移动，找另一组b,c，因为已经排序了，所以不会遇到 -5,2,3与-5,3,2的情况
+                left += 1
+                right -= 1
+
+    return result
 
 
-# # 使用字典，查找b 和c元素，即给定target,找b和c的不重复值，没看懂
-# def threeSum(nums):
-#     result = []
-#     n = len(nums)
-#     # 先排序
-#     nums.sort() # nums = sorted(nums)
-#
-#     # 先确定 a 元素
-#     for i in range(n):
-#         if nums[i] > 0:
-#             return result # 此时，肯定没有任何一个三元组，满足元素和为0
-#
-#         # 对 a 元素进行去重,a与遍历过的a进行值对比
-#         if i-1 >= 0 and nums[i] == nums[i-1]:
-#             continue
-#
-#         # 使用哈希法寻找b和c 元素，即寻找两数之和不重复的二元组
-#         cur = {} # 里面装的是遍历过的元素
-#         for j in range(i+1, n):
-#             # 先对b去重：
-#             if j > i+2 and nums[j] == nums[j-1] == nums[j-2]:
-#                 continue
-#             target = 0 - nums[i] - nums[j]
-#             if target in cur:
-#                 result.append([nums[i],nums[j],target])
-#                 # c元素去重
-#                 cur.pop(target) # 我已经找到c元素了，就把与c元素相同的值去掉
-#             else:
-#                 cur[nums[j]] = j
-#
-#         return result
+# 使用字典，查找b 和c元素，即给定target,找b和c的不重复值，没看懂
+def threeSum(nums):
+    result = []
+    n = len(nums)
+    # 先排序
+    nums.sort() # nums = sorted(nums)
+
+    # 先确定 a 元素
+    for i in range(n):
+        if nums[i] > 0:
+            return result # 此时，肯定没有任何一个三元组，满足元素和为0
+
+        # 对 a 元素进行去重,a与遍历过的a进行值对比
+        if i-1 >= 0 and nums[i] == nums[i-1]:
+            continue
+
+        # 使用哈希法寻找b和c 元素，即寻找两数之和不重复的二元组
+        cur = {} # 里面装的是遍历过的元素
+        for j in range(i+1, n):
+            # 先对b去重：
+            if j > i+2 and nums[j] == nums[j-1] == nums[j-2]:
+                continue
+            target = 0 - nums[i] - nums[j]
+            if target in cur:
+                result.append([nums[i],nums[j],target])
+                # c元素去重
+                cur.pop(target) # 我已经找到c元素了，就把与c元素相同的值去掉
+            else:
+                cur[nums[j]] = j
+
+        return result
 
 
 # 方法3：力扣的官方解法

@@ -98,7 +98,7 @@ def sumfour(nums,target):
         for j in range(i+1,len(nums)):
             for k in range(j+1,len(nums)):
                 val = target-(nums[i]+nums[j]+nums[k])
-                for val in freq:
+                if val in freq:
                     # 确保没有重复
                     count = (nums[i] == val) + (nums[j] == val) + (nums[k] == val)
                     if freq[val] > count:

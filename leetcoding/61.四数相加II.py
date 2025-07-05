@@ -59,32 +59,32 @@ def foursumcount(nums1,nums2,nums3,nums4):
     # count = 0
     # from collections import defaultdict
     # sumcount = defaultdict(int)
-    ## sumcount = defaultdict(lambda:0)
-
+    # # sumcount = defaultdict(lambda:0)
+    #
     # for i in nums1:
     #     for j in nums2:
     #         sumcount[i+j] += 1
-
+    #
     # for i in nums3:
     #     for j in nums4:
     #         target = 0-(i+j)
     #         if target in sumcount:
     #             count += sumcount[target]
-
+    #
     # return count
 
     # # 方法二：使用dict()
     # count = 0
     # sumcount = {}
-
+    #
     # for i in nums1:
     #     for j in nums2:
     #         sumcount[i+j] = sumcount.get(i+j, 0) + 1
-
+    #
     # for i in nums3:
     #     for j in nums4:
     #         target = 0-(i+j)
     #         if target in sumcount:
     #             count += sumcount[target]
-
+    #
     # return count

@@ -219,7 +219,7 @@ def canConstruct(ransomNote: str, magazine: str) -> bool:
     #         return False
     # return True
 
-    # 方法二：map，先遍历ransomNote
+    # # 方法二：map，先遍历ransomNote
     # if len(magazine) < len(ransomNote):
     #     return False
     # cur = {}
