@@ -29,6 +29,41 @@ n == height.length
 # https://leetcode.cn/problems/container-with-most-water/description/?envType=study-plan-v2&envId=top-100-liked
 # 思路
 """
+初始化一个最小值为可以存储的最大水量maxWater
+逐个遍历数组元素，算出位置i可以存储的最大水量，
 
+左右指针，
+    终止条件：两个指针相遇
+    移动条件：哪一个指针的水柱越低，就移动哪一个
 
+用max(A,B)更新最大水量
 """
+
+from typing import List
+
+
+def maxArea(height: List[int]) -> int:
+    maxwater = 0  # -inf
+    n = len(height)
+    # 左右指针
+    left,right = 0,n-1
+    while left < right:
+        maxwater = max(min(height[left], height[right]) * (right-left), maxwater)
+        if height[left] < height[right]:
+            left += 1
+        else:
+            right -= 1
+
+    return maxwater
+
+
+    # # 暴力求解,超时
+    # for slow in range(n):
+    #     for fast in range(slow,n):
+    #         area = min(height[slow],height[fast]) * (fast-slow)
+    #         maxwater = max(maxwater,area)
+
+    return maxwater
+
+
+
